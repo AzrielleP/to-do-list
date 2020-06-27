@@ -14,6 +14,65 @@
     <title>TODO</title>
 </head>
 <body>
-    
+    <div class="parentContainer">
+        <div class="projectContainer">
+            <!-- Container for the burger menu for mobile-->
+            <div class="burgerNav">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="viewProjects">
+                <p>All Projects</p>
+                <div class="projectList"></div>
+                <button class = "addProject">+ Add Project</button>
+                <form>
+                    <input type = "text" name = "projectTitle" id = "projectTitle" placeholder = "Enter project name">
+                </form>
+            </div>
+        </div>
+
+        <div class="mainContainer">
+            <div class="projectTitleContainer">
+                <p class = "projectName">Stash</p>
+            </div>
+
+            <div class="tasksList">
+                <div class="task">
+                    <input type = "checkbox" class = "taskStatus">
+                    <p class="task">Wash Dishes</p>
+                    <p class="dueDate">Due on 07/14/2020</p>
+                    <i class="fas fa-trash"></i>
+                </div>
+            </div>
+
+            <div class="formContainer">
+                <form>
+                    <ul>
+                        <li>
+                        <label for = "taskTitle">Task Title</label>
+                        <input type = "text" name = "taskTitle" id = "taskTitle" placeholder="Enter Task Title">
+                        </li>
+                        <div class="divider">
+                            <ul>
+                                <li>
+                                    <label for = "dateDue">Date Due</label>
+                                    <input type = "date" name = "dateDue" id = "dateDue" placeholder="Date Due">
+                                </li>
+                                <li>
+                                    <label for = "project">Project</label>
+                                    <select>
+                                        <option value = "Stash">Stash</option>
+                                    </select>
+                                </li>
+                            </ul>
+                        </div>
+                        <li>
+                            <label for = "notes">Notes</label>
+                            <textarea id = "notes" name = "notes" rows = "5">Type your notes here...</textarea>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
