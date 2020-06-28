@@ -1,5 +1,129 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+/* Styling the burger nav */
+.burgerNav{
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 1.2em;
+}
+
+#burger{
+    color: #326273;
+}
+
+#close{
+    color: #ffffff;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+    padding: 0.6em 0em 1em 0.6em;
+
+}
+/* Styling the projects section */
+.projectContainer {
+  position: fixed;
+  top: 0;
+  left: -60vw;
+  padding: 0em 0em 2em 0em;
+  z-index: 1;
+  background: linear-gradient(180deg, #326273 0%, #5c9ead 100%);
+  height: 100vh;
+  width: 60vw;
+
+  /* Style the transition */
+  -webkit-transition: left 0.5s ease;
+  -moz-transition: left 0.5s ease;
+  -ms-transition: left 0.5s ease;
+  -o-transition: left 0.5s ease;
+  transition: left 0.5s ease;
+}
+
+.projectContainer.expanded{
+  left: 0;
+}
+
+.projectContainer > p {
+  font-size: 1.7em;
+  font-weight: bold;
+  color: #e39774;
+  text-transform: uppercase;
+  padding: 1em 0 1em 1em;
+}
+
+.viewProjects {
+  padding-top: 1em;
+}
+
+.projectList p {
+  border-top: 0.3px solid #c4c4c4;
+  font-size: 1em;
+  padding: 0.6em 2em 0.6em 2em;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* Prevent the borders from "overlapping" */
+.projectList p:last-child {
+  border-bottom: 0.3px solid #c4c4c4;
+}
+
+.viewProjects form input[type="text"] {
+  display: none;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1em;
+  padding: 1em 2em 1em 2em;
+  margin-bottom: 2em;
+  font-weight: bold;
+  color: #ffffff;
+  width: 100%;
+}
+
+/* Change placeholder color */
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #ffffff;
+  opacity: 0.7; /* Firefox */
+  font-weight: lighter;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #ffffff;
+  opacity: 0.7;
+  font-weight: lighter;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #ffffff;
+  opacity: 0.7;
+  font-weight: lighter;
+}
+
+.addProject{
+    border: none;
+    outline: none;
+    color: #e39774;
+    padding: 1.2em 1.5em 1.5em 1.5em;
+    background: none;
+    font: 1em "Open Sans", sans-serif;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+.mainContainer {
+  visibility: hidden;
 }
