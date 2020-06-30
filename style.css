@@ -78,7 +78,7 @@ body {
   border-bottom: 0.3px solid #c4c4c4;
 }
 
-.viewProjects form input[type="text"] {
+#addProjectTitle{
   display: none;
   border: none;
   outline: none;
@@ -97,6 +97,7 @@ body {
   color: #ffffff;
   opacity: 0.7; /* Firefox */
   font-weight: lighter;
+  font-size: 0.8em;
 }
 
 :-ms-input-placeholder {
@@ -104,6 +105,7 @@ body {
   color: #ffffff;
   opacity: 0.7;
   font-weight: lighter;
+  font-size: 0.8em;
 }
 
 ::-ms-input-placeholder {
@@ -111,6 +113,7 @@ body {
   color: #ffffff;
   opacity: 0.7;
   font-weight: lighter;
+  font-size: 0.8em;
 }
 
 .addProject{
