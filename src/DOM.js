@@ -1,21 +1,29 @@
 const ManipulateDOM = (() => {
 
-    const hamburger = {
-      burgerNav: document.querySelector('.burgerNav'),
-      projectContainer: document.querySelector('.projectContainer'),
-  
-      doToggle: function(e) {
-        e.preventDefault();
-        this.burgerNav.classList.toggle('expanded');
-        this.projectContainer.classList.toggle('expanded');
-      }
+    const burgerNav = document.querySelector(".burgerNav");
+    const projectContainer = document.querySelector(".projectContainer");
+    const close = document.querySelector("#close");
+
+    const inputProject = document.querySelector('#addProjectTitle');
+    const addProjectButton = document.querySelector('.addProject')
+
+    const burgerToggle = ()=> {
+      burgerNav.addEventListener('click', () =>{
+            projectContainer.classList.toggle('expanded');
+        })
+        close.addEventListener("click", ()=>{
+            projectContainer.classList.toggle('expanded');
+        })
     };
-  
     
-    const allowBurgerClick = hamburger.burgerNav.addEventListener('click', function(e) { hamburger.doToggle(e); });
-    const showProject = hamburger.projectContainer.addEventListener('click', function(e) { hamburger.doToggle(e); });
-  
-    return {allowBurgerClick, showProject};
+    const showProjectForm = ()=>{
+        addProjectButton.addEventListener("click", () =>{
+            addProjectButton.style.display = "none";
+            inputProject.style.display = "block";
+        })
+    };
+
+    return {burgerToggle, showProjectForm};
   
   })();
   
