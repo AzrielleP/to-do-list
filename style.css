@@ -8,29 +8,40 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Open Sans", sans-serif;
+  height: 100vh;
+  background: linear-gradient(
+    180deg,
+    rgba(92, 158, 173, 0.2) 0%,
+    rgba(196, 196, 196, 0) 52.6%
+  );
 }
 
-/* Styling the burger nav */
-.burgerNav{
-    z-index: 1;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 1.2em;
+/* ===============
+Styling the burger nav
+================== 
+*/
+.burgerNav {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 1.2em;
 }
 
-#burger{
-    color: #326273;
+#burger {
+  color: #326273;
 }
 
-#close{
-    color: #ffffff;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    z-index: 2;
-    padding: 0.6em 0em 1em 0.6em;
-
+#close {
+  color: #ffffff;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+  padding: 0.6em 0em 1em 0.6em;
 }
-/* Styling the projects section */
+/*==================== 
+Styling the projects section 
+=======================
+*/
 .projectContainer {
   position: fixed;
   top: 0;
@@ -49,7 +60,7 @@ body {
   transition: left 0.5s ease;
 }
 
-.projectContainer.expanded{
+.projectContainer.expanded {
   left: 0;
 }
 
@@ -78,7 +89,7 @@ body {
   border-bottom: 0.3px solid #c4c4c4;
 }
 
-#addProjectTitle{
+#addProjectTitle {
   display: none;
   border: none;
   outline: none;
@@ -91,7 +102,6 @@ body {
   width: 100%;
 }
 
-/* Change placeholder color */
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #ffffff;
@@ -116,17 +126,188 @@ body {
   font-size: 0.8em;
 }
 
-.addProject{
-    border: none;
-    outline: none;
-    color: #e39774;
-    padding: 1.2em 1.5em 1.5em 1.5em;
-    background: none;
-    font: 1em "Open Sans", sans-serif;
-    font-weight: bolder;
-    text-transform: uppercase;
+.addProject {
+  border: none;
+  outline: none;
+  color: #e39774;
+  padding: 1.2em 1.5em 1.5em 1.5em;
+  background: none;
+  font: 1em "Open Sans", sans-serif;
+  font-weight: bolder;
+  text-transform: uppercase;
 }
 
+/*====================
+Styling the main container section
+======================
+*/
+
 .mainContainer {
-  visibility: hidden;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/*Styling the project title*/
+.projectTitleContainer {
+  margin-top: 7em;
+  display: flex;
+}
+
+.projectTitleContainer i {
+  color: #32627385;
+  padding-left: 0.6em;
+}
+
+.projectName {
+  font: 3em "Comfortaa", sans-serif;
+  font-weight: lighter;
+  color: #326273;
+  text-transform: uppercase;
+}
+
+/*Styling the tasks*/
+.tasksList {
+  margin-top: 3em;
+  font-size: 0.75em;
+  width: 92%;
+  text-align: center;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7em 1em 0.7em 1em;
+  margin: 0.8em;
+  background-color: #5c9ead;
+  color: white;
+  border-radius: 10px;
+}
+
+.taskStatus {
+  outline: none;
+  border: none;
+  height: 2em;
+  width: 1.5em;
+}
+
+.taskName {
+  flex-basis: 10em;
+}
+
+.dueDate {
+  flex-basis: 2em;
+}
+
+.task i {
+  padding-left: 1em;
+}
+
+.addTask {
+  background: none;
+  color: #e39774;
+  border: none;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: bolder;
+  padding: 2em 7.5vw;
+  font-size: 0.8em;
+}
+
+/*==============
+Stling the form
+================
+*/
+
+.formContainer {
+  background: rgba(238, 238, 238, 0.6);
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+.formContainer form {
+  background: #ffffff;
+  padding: 1.2em;
+  border: 1px solid #c4c4c4;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 90vw;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  padding: 0.4em;
+}
+
+label {
+  display: block;
+  color: #326273;
+  text-transform: uppercase;
+  font-weight: bolder;
+  padding-bottom: 0.5em;
+}
+
+li input {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #c4c4c4;
+  padding: 0.5em;
+  color: #326273;
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+}
+
+select {
+  width: 100%;
+  outline: none;
+  padding: 0.5em;
+  border: 1px solid #c4c4c4;
+  color: #326273;
+}
+
+textarea {
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+  border: 1px solid #c4c4c4;
+  color: #326273;
+  padding: 0.5em;
+  outline: none;
+}
+
+.buttonContainer {
+  text-align: right;
+  margin: 0.8em;
+}
+
+.cancelButton {
+  border: none;
+  outline: none;
+  color: #5c9ead;
+  text-transform: uppercase;
+  margin-right: 1.5em;
+}
+
+.save {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background: #e39774;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 1em;
+  width: 6em;
 }
