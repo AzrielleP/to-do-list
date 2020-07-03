@@ -201,7 +201,7 @@ Styling the main container section
   flex-basis: 2em;
 }
 
-.task i {
+#taskTrash{
   padding-left: 1em;
 }
 
@@ -323,7 +323,7 @@ Styling the pop up
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   width: 80vw;
-  display: none;
+
 }
 .warning{
   font-size: 1em;
