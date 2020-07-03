@@ -6,5 +6,5 @@ ManipulateDOM.showProjectForm();
 ManipulateDOM.showTaskForm();
 
 ManipulateData.addProject();
-ManipulateData.addTask();
+ManipulateData.viewProjectTasks();
 ManipulateData.cancelAddTask();
