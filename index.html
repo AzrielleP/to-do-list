@@ -10,8 +10,6 @@
     />
 
     <link rel="stylesheet" href="style.css" />
-    <script src="main.js" defer></script>
-
     <link
       href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Open+Sans&display=swap"
       rel="stylesheet"
@@ -20,6 +18,7 @@
       src="https://kit.fontawesome.com/238576f8e6.js"
       crossorigin="anonymous"
     ></script>
+    <script src="main.js" defer></script>
     <title>TODO</title>
   </head>
   <body>
@@ -50,7 +49,7 @@
         <div class="projectTitleContainer">
           <p class="projectName"></p>
           <i class="fas fa-pen"></i>
-          <i class="fas fa-trash"></i>
+          <i class="fas fa-trash" id = "projectTrash"></i>
         </div>
 
         <div class="tasksList">
@@ -59,7 +58,7 @@
             <input type="checkbox" class="taskStatus" />
             <p class="taskName">Wash Dishes</p>
             <p class="dueDate">Due 07/14/2020</p>
-            <i class="far fa-trash-alt fa-2x"></i>
+            <i class="far fa-trash-alt fa-2x" id="taskTrash"></i>
           </div>
         -->
         </div>
@@ -121,5 +120,6 @@
       </div>
 
     </div>
+  
   </body>
 </html>
