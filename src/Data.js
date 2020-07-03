@@ -13,6 +13,7 @@ const ManipulateData = (() =>{
     const notes = document.querySelector("#notes");
     const cancelButton = document.querySelector(".cancelButton");
     const saveButton = document.querySelector(".save");
+    //const task = document.querySelector(".task");
 
     // Function Factories
     const projectMaker = (projectName, tasks) =>{
@@ -31,6 +32,7 @@ const ManipulateData = (() =>{
                 if(inputProject.value !== ""){
                     data.push(projectMaker(inputProject.value, []));
                     renderProject(data);
+                    ManipulateDOM.addProjectOption(inputProject.value);
                 }
                 inputProject.value = "";
                 ManipulateDOM.hideProjectForm();
@@ -47,9 +49,23 @@ const ManipulateData = (() =>{
         }
     }
 
+    const viewProjectTasks = ()=>{
+        let openProject = null;
+        projectList.addEventListener("click", event =>{
+            if(event.target !== event.currentTarget){
+                openProject = data.findIndex(name => name.projectName == event.target.textContent );
+                ManipulateDOM.createProjectTitle(event.target.textContent);
+                
+                renderTask(data[openProject].tasks);
+               
+                addTask(openProject);
+            }
+        })
+    }
+
     //Task Related
 
-    const addTask = () =>{
+    const addTask = (projectPage) =>{
         saveButton.addEventListener("click", () =>{
             //Find the index of the project name first
             let putInProject = data.findIndex(name => name.projectName == projectCategory.value);
@@ -61,7 +77,7 @@ const ManipulateData = (() =>{
                 "Incomplete",
                 notes.value
             ));
-            renderTask(data[putInProject].tasks);
+            renderTask(data[projectPage].tasks);
             clearTaskForm();
             ManipulateDOM.hideTaskForm();
            
@@ -71,7 +87,7 @@ const ManipulateData = (() =>{
     const cancelAddTask = () =>{
         cancelButton.addEventListener("click", () =>{
             clearTaskForm();
-            ManipulateDOM.hideTaskForm;
+            ManipulateDOM.hideTaskForm();
         })
     }
 
@@ -88,7 +104,7 @@ const ManipulateData = (() =>{
         notes.value = "";
     }
 
-    return {addProject, addTask, cancelAddTask}
+    return {addProject,viewProjectTasks, cancelAddTask}
 })();
 
 export default ManipulateData;
