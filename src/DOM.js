@@ -6,11 +6,13 @@ const ManipulateDOM = (() => {
     const close = document.querySelector("#close");
     const inputProject = document.querySelector('#addProjectTitle');
     const addProjectButton = document.querySelector('.addProject');
+    let projectTitleName = document.querySelector(".projectName");
+    const projectTitleContainer = document.querySelector(".projectTitleContainer");
+    const projectCategory = document.querySelector(".projectCategory");
 
     /*FROM HTML: For task list and task form */
     const addTaskButton = document.querySelector(".addTask");
     const formContainer = document.querySelector(".formContainer");
-    
     
     let projectList = document.querySelector(".projectList");
     let taskList = document.querySelector(".tasksList");
@@ -77,13 +79,25 @@ const ManipulateDOM = (() => {
         taskList.append(div);
     }
 
+    const createProjectTitle = (title) =>{
+        projectTitleName.textContent = title;
+        projectTitleContainer.style.display = "flex";
+        addTaskButton.style.display = "block";
+    }
 
+    const addProjectOption = (projectName) =>{
+        let option = document.createElement("option");
+        option.className = projectName;
+        option.textContent = projectName;
+        projectCategory.appendChild(option);
+    }
 
-    
     return {
         burgerToggle, 
         showProjectForm, 
-        createProjectElem, 
+        createProjectElem,
+        createProjectTitle, 
+        addProjectOption,
         hideProjectForm,
         showTaskForm,
         hideTaskForm,
