@@ -15,7 +15,7 @@ const ManipulateData = (() =>{
     const cancelButton = document.querySelector(".cancelButton");
     const saveButton = document.querySelector(".save");
     const yesOption = document.querySelector(".yes");
-    //const task = document.querySelector(".task");
+    
 
     // Function Factories
     const projectMaker = (projectName, tasks) =>{
@@ -69,6 +69,7 @@ const ManipulateData = (() =>{
             data.splice(searchProject, 1);
             ManipulateDOM.hideDeletePopUp();
             ManipulateDOM.deleteProjectTitle();
+            ManipulateDOM.deleteTasksList();
             renderProject(data);
         })
     }
@@ -124,7 +125,30 @@ const ManipulateData = (() =>{
         })
     }
 
-    return {addProject,viewProjectTasks, cancelAddTask, deleteProject, deleteTask}
+    const editTask = ()=>{
+        document.addEventListener("click", event=>{
+            if(event.target.className == "task"){
+                ManipulateDOM.showTaskForm();
+                let parentNodeId = Number(event.target.parentNode.id);
+                let searchProject = data.findIndex(name => name.projectName == projectTitleName.textContent);
+                taskTitle.value = data[searchProject].tasks[parentNodeId].taskName;
+                dateDue.value = data[searchProject].tasks[parentNodeId].dueDate;
+                notes.value = data[searchProject].tasks[parentNodeId].notes;
+
+                data[searchProject].tasks.splice(parentNodeId, 1);
+                saveButton.addEventListener("click", editTaskData(searchProject, parentNodeId));
+                renderTask(data[searchProject].tasks);
+            }
+        })
+
+        function editTaskData(project, taskIndex){
+            data[project].tasks[taskIndex].taskName = taskTitle.value;
+            data[project].tasks[taskIndex].dueDate = dateDue.value;
+            data[project].tasks[taskIndex].notes = notes.value;
+        }
+    }
+    
+    return {addProject,viewProjectTasks, cancelAddTask, deleteProject, deleteTask, editTask}
 })();
 
 export default ManipulateData;
