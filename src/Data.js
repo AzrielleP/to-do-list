@@ -10,9 +10,11 @@ const ManipulateData = (() =>{
     const taskTitle = document.querySelector("#taskTitle");
     const dateDue = document.querySelector("#dateDue");
     const projectCategory = document.querySelector(".projectCategory");
+    let projectTitleName = document.querySelector(".projectName");
     const notes = document.querySelector("#notes");
     const cancelButton = document.querySelector(".cancelButton");
     const saveButton = document.querySelector(".save");
+    const yesOption = document.querySelector(".yes");
     //const task = document.querySelector(".task");
 
     // Function Factories
@@ -55,11 +57,19 @@ const ManipulateData = (() =>{
             if(event.target !== event.currentTarget){
                 openProject = data.findIndex(name => name.projectName == event.target.textContent );
                 ManipulateDOM.createProjectTitle(event.target.textContent);
-                
-                renderTask(data[openProject].tasks);
-               
-                addTask(openProject);
+                renderTask(data[openProject].tasks);            
+                addTask(openProject); 
             }
+        })
+    }
+
+    const deleteProject = () =>{
+        yesOption.addEventListener("click", () =>{
+            let searchProject = data.findIndex(name => name.projectName == projectTitleName.textContent);
+            data.splice(searchProject, 1);
+            ManipulateDOM.hideDeletePopUp();
+            ManipulateDOM.deleteProjectTitle();
+            renderProject(data);
         })
     }
 
@@ -80,7 +90,6 @@ const ManipulateData = (() =>{
             renderTask(data[projectPage].tasks);
             clearTaskForm();
             ManipulateDOM.hideTaskForm();
-           
         })
     }
 
@@ -94,7 +103,7 @@ const ManipulateData = (() =>{
     const renderTask = (array) =>{
         tasksList.innerHTML = "";
         for(let i = 0; i< array.length; i ++){
-            ManipulateDOM.createTaskElement(array[i]);
+            ManipulateDOM.createTaskElement(array[i],i);
         }
     }
 
@@ -104,7 +113,18 @@ const ManipulateData = (() =>{
         notes.value = "";
     }
 
-    return {addProject,viewProjectTasks, cancelAddTask}
+    const deleteTask = ()=>{
+        document.addEventListener("click", event =>{
+            if(event.target.id == "taskToTrash"){
+                let parentNodeId = event.target.parentNode.id;
+                let searchProject = data.findIndex(name => name.projectName == projectTitleName.textContent);
+                data[searchProject].tasks.splice(parentNodeId, 1);
+                renderTask(data[searchProject].tasks);
+            }
+        })
+    }
+
+    return {addProject,viewProjectTasks, cancelAddTask, deleteProject, deleteTask}
 })();
 
 export default ManipulateData;
