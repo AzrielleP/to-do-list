@@ -157,7 +157,7 @@ Styling the main container section
 
 .projectTitleContainer i {
   color: #32627385;
-  padding-left: 0.6em;
+  margin-left: 1em;
 }
 
 .projectName {
