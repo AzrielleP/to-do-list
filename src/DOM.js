@@ -13,6 +13,10 @@ const ManipulateDOM = (() => {
     /*FROM HTML: For task list and task form */
     const addTaskButton = document.querySelector(".addTask");
     const formContainer = document.querySelector(".formContainer");
+   
+    const popUp = document.querySelector(".popupContainer");
+    const noOption = document.querySelector(".no");
+    const projectTrash = document.querySelector("#projectTrash");
     
     let projectList = document.querySelector(".projectList");
     let taskList = document.querySelector(".tasksList");
@@ -56,9 +60,10 @@ const ManipulateDOM = (() => {
         formContainer.style.display = "none";
     }
 
-    const createTaskElement = (object) =>{
+    const createTaskElement = (object, position) =>{
         const div = document.createElement("div");
         div.className = "task";
+        div.id = position;
 
         const input = document.createElement("input");
         input.type = "checkbox";
@@ -74,6 +79,7 @@ const ManipulateDOM = (() => {
 
         const trashCan = document.createElement("i");
         trashCan.className = "far fa-trash-alt fa-2x";
+        trashCan.id = "taskToTrash";
 
         div.append(input, taskName, dueDate, trashCan);
         taskList.append(div);
@@ -85,6 +91,12 @@ const ManipulateDOM = (() => {
         addTaskButton.style.display = "block";
     }
 
+    const deleteProjectTitle = () =>{
+        projectTitleName.textContent = "";
+        projectTitleContainer.style.display = "none";
+        addTaskButton.style.display = "none";
+    }
+
     const addProjectOption = (projectName) =>{
         let option = document.createElement("option");
         option.className = projectName;
@@ -92,16 +104,36 @@ const ManipulateDOM = (() => {
         projectCategory.appendChild(option);
     }
 
+    const showDeletePopUp = () =>{
+        projectTrash.addEventListener("click", ()=>{
+            popUp.style.display = "flex";
+        })
+    }
+
+    const hideDeletePopUp = () =>{
+        popUp.style.display = "none";
+    }
+
+    const pressNo = ()=>{
+        noOption.addEventListener("click", ()=>{
+            hideDeletePopUp();
+        })
+    }
+
     return {
         burgerToggle, 
         showProjectForm, 
         createProjectElem,
         createProjectTitle, 
+        deleteProjectTitle,
         addProjectOption,
         hideProjectForm,
         showTaskForm,
         hideTaskForm,
-        createTaskElement
+        createTaskElement,
+        hideDeletePopUp,
+        pressNo,
+        showDeletePopUp
     };
   
   })();
