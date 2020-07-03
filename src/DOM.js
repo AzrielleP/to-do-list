@@ -13,7 +13,7 @@ const ManipulateDOM = (() => {
     /*FROM HTML: For task list and task form */
     const addTaskButton = document.querySelector(".addTask");
     const formContainer = document.querySelector(".formContainer");
-   
+    
     const popUp = document.querySelector(".popupContainer");
     const noOption = document.querySelector(".no");
     const projectTrash = document.querySelector("#projectTrash");
@@ -28,6 +28,7 @@ const ManipulateDOM = (() => {
         })
         close.addEventListener("click", ()=>{
             projectContainer.classList.toggle('expanded');
+            hideProjectForm();
         })
     };
     
@@ -50,10 +51,13 @@ const ManipulateDOM = (() => {
     }
 
     /*For tasklist and task form */
-    const showTaskForm = ()=>{
+    const showTaskByAdd = () =>{
         addTaskButton.addEventListener("click", ()=>{
-            formContainer.style.display = "flex";
+            showTaskForm();
         })
+    }
+    const showTaskForm = ()=>{
+        formContainer.style.display = "flex";
     }
 
     const hideTaskForm = () =>{
@@ -97,6 +101,10 @@ const ManipulateDOM = (() => {
         addTaskButton.style.display = "none";
     }
 
+    const deleteTasksList = ()=>{
+        taskList.innerHTML = "";
+    }
+
     const addProjectOption = (projectName) =>{
         let option = document.createElement("option");
         option.className = projectName;
@@ -126,8 +134,10 @@ const ManipulateDOM = (() => {
         createProjectElem,
         createProjectTitle, 
         deleteProjectTitle,
+        deleteTasksList,
         addProjectOption,
         hideProjectForm,
+        showTaskByAdd,
         showTaskForm,
         hideTaskForm,
         createTaskElement,
