@@ -128,6 +128,15 @@ const ManipulateDOM = (() => {
         })
     }
 
+    const statusComplete = (task)=>{
+        task.checked = true;
+        task.parentNode.style.backgroundColor = "#E5E5E5";
+    }
+
+    const statusIncomplete = (task) =>{
+        task.style.backgroundColor = "#5C9EAD";
+    }
+
     return {
         burgerToggle, 
         showProjectForm, 
@@ -143,7 +152,9 @@ const ManipulateDOM = (() => {
         createTaskElement,
         hideDeletePopUp,
         pressNo,
-        showDeletePopUp
+        showDeletePopUp,
+        statusComplete,
+        statusIncomplete
     };
   
   })();

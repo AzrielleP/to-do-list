@@ -12,4 +12,6 @@ ManipulateData.viewProjectTasks();
 ManipulateData.cancelAddTask();
 ManipulateData.deleteProject();
 ManipulateData.deleteTask();
+ManipulateData.addTask();
 ManipulateData.editTask();
+ManipulateData.changeTaskStatus();

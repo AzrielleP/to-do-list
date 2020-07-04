@@ -34,7 +34,7 @@ const ManipulateData = (() =>{
                 if(inputProject.value !== ""){
                     data.push(projectMaker(inputProject.value, []));
                     renderProject(data);
-                    ManipulateDOM.addProjectOption(inputProject.value);
+                   
                 }
                 inputProject.value = "";
                 ManipulateDOM.hideProjectForm();
@@ -45,20 +45,21 @@ const ManipulateData = (() =>{
 
     const renderProject = (object) =>{
         projectList.innerHTML = "";
+        projectCategory.innerHTML= "";
         let projectArray = object.map(a => a.projectName);
         for(let i = 0; i < projectArray.length; i++){
             ManipulateDOM.createProjectElem(projectArray[i]);
+            ManipulateDOM.addProjectOption(projectArray[i]);
         }
     }
 
     const viewProjectTasks = ()=>{
-        let openProject = null;
         projectList.addEventListener("click", event =>{
             if(event.target !== event.currentTarget){
-                openProject = data.findIndex(name => name.projectName == event.target.textContent );
+                let openProject = data.findIndex(name => name.projectName == event.target.textContent );
                 ManipulateDOM.createProjectTitle(event.target.textContent);
                 renderTask(data[openProject].tasks);            
-                addTask(openProject); 
+              
             }
         })
     }
@@ -76,8 +77,9 @@ const ManipulateData = (() =>{
 
     //Task Related
 
-    const addTask = (projectPage) =>{
+    const addTask = () =>{
         saveButton.addEventListener("click", () =>{
+            let openProject = data.findIndex(name => name.projectName ==projectTitleName.textContent );
             //Find the index of the project name first
             let putInProject = data.findIndex(name => name.projectName == projectCategory.value);
             
@@ -88,7 +90,7 @@ const ManipulateData = (() =>{
                 "Incomplete",
                 notes.value
             ));
-            renderTask(data[projectPage].tasks);
+            renderTask(data[openProject].tasks);
             clearTaskForm();
             ManipulateDOM.hideTaskForm();
         })
@@ -147,8 +149,43 @@ const ManipulateData = (() =>{
             data[project].tasks[taskIndex].notes = notes.value;
         }
     }
+
+    const changeTaskStatus = () =>{
+        document.addEventListener("click", event =>{
+            if(event.target.className == "taskStatus"){
+                let parentNodeId = Number(event.target.parentNode.id);
+                let searchProject = data.findIndex(name => name.projectName == projectTitleName.textContent);
+                let taskPosition = data[searchProject].tasks[parentNodeId];
+               
+                if (event.target.checked){
+                    taskPosition.status = "Complete";
+                    //ManipulateDOM.statusComplete(event.target);
+                    data[searchProject].tasks.push(data[searchProject].tasks.splice(parentNodeId,1));
+                    console.log(taskPosition);
+                }
+                else if(!event.target.checked){
+                    taskPosition.status == "Incomplete";
+                    //ManipulateDOM.statusIncomplete(event.target.parentNode);
+
+                }
+                renderTask(data[searchProject].tasks)
+
+            }
+        })
+    }
+
+ 
     
-    return {addProject,viewProjectTasks, cancelAddTask, deleteProject, deleteTask, editTask}
+    return {
+        addProject,
+        viewProjectTasks, 
+        cancelAddTask, 
+        deleteProject,
+        deleteTask, 
+        editTask, 
+        changeTaskStatus,
+        addTask
+    }
 })();
 
 export default ManipulateData;
