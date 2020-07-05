@@ -156,20 +156,14 @@ const ManipulateData = (() =>{
                 let parentNodeId = Number(event.target.parentNode.id);
                 let searchProject = data.findIndex(name => name.projectName == projectTitleName.textContent);
                 let taskPosition = data[searchProject].tasks[parentNodeId];
-               
                 if (event.target.checked){
-                    taskPosition.status = "Complete";
-                    //ManipulateDOM.statusComplete(event.target);
-                    data[searchProject].tasks.push(data[searchProject].tasks.splice(parentNodeId,1));
-                    console.log(taskPosition);
+                    taskPosition.status = "Complete";        
                 }
-                else if(!event.target.checked){
-                    taskPosition.status == "Incomplete";
-                    //ManipulateDOM.statusIncomplete(event.target.parentNode);
-
+                
+                else if(!event.currentTarget.checked){
+                    taskPosition.status = "Incomplete";
                 }
-                renderTask(data[searchProject].tasks)
-
+               renderTask(data[searchProject].tasks);
             }
         })
     }

@@ -72,7 +72,7 @@ const ManipulateDOM = (() => {
         const input = document.createElement("input");
         input.type = "checkbox";
         input.className = "taskStatus";
-
+       
         let taskName = document.createElement("p");
         taskName.className = "taskName";
         taskName.textContent = object.taskName;
@@ -84,7 +84,12 @@ const ManipulateDOM = (() => {
         const trashCan = document.createElement("i");
         trashCan.className = "far fa-trash-alt fa-2x";
         trashCan.id = "taskToTrash";
-
+        
+        if(object.status == "Complete"){
+            input.checked = true;
+            div.style.backgroundColor = "#E5E5E5";
+        }
+        
         div.append(input, taskName, dueDate, trashCan);
         taskList.append(div);
     }
@@ -128,15 +133,6 @@ const ManipulateDOM = (() => {
         })
     }
 
-    const statusComplete = (task)=>{
-        task.checked = true;
-        task.parentNode.style.backgroundColor = "#E5E5E5";
-    }
-
-    const statusIncomplete = (task) =>{
-        task.style.backgroundColor = "#5C9EAD";
-    }
-
     return {
         burgerToggle, 
         showProjectForm, 
@@ -153,8 +149,6 @@ const ManipulateDOM = (() => {
         hideDeletePopUp,
         pressNo,
         showDeletePopUp,
-        statusComplete,
-        statusIncomplete
     };
   
   })();
