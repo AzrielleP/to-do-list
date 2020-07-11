@@ -89,6 +89,7 @@ const ManipulateData = (() =>{
             ManipulateDOM.deleteProjectName();
             ManipulateDOM.deleteTaskList();
             renderProject(data);
+            projectsContainer.classList.toggle('expanded');
         })
     }
 
