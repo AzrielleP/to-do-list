@@ -80,6 +80,15 @@ Project Pane
   color: #000000;
 }
 
+/* Make the list of projects scrollable when there are too many projects */
+.projectListContainer {
+  position: absolute;
+  height: 60vh;
+  width: 100%;
+  overflow-Y: auto;
+  overflow-x: hidden;
+}
+
 #inputCreateProject {
   display: none;
   width: 100%;
