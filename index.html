@@ -8,76 +8,89 @@
       name="description"
       content="A simple to-do list application that you can use on your browser."
     />
+    <title>To Do List Application</title>
 
     <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Open+Sans&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Ubuntu&display=swap" rel="stylesheet">
     <script
       src="https://kit.fontawesome.com/238576f8e6.js"
       crossorigin="anonymous"
     ></script>
-    <script src="main.js" defer></script>
-    <title>TODO</title>
+    <script src="main.js" defer></script> 
   </head>
   <body>
     <div class="parentContainer">
       <!-- Container for the burger menu for mobile-->
-      <div class="burgerNav">
-        <i class="fas fa-bars fa-2x" id="burger"></i>
+      <div class="burgerNavigationMenu">
+        <!--burgerNav-->
+        <i class="fas fa-bars fa-2x" id="burgerIcon"></i>
+        <!--burger-->
       </div>
-      <div class="projectContainer">
-        <i class="fas fa-times fa-2x" id="close"></i>
+
+      <!-- Project Pane -->
+      <div class="projectsContainer">
+        <!--projectContainer-->
+        <i class="fas fa-times fa-2x" id="closeIcon"></i>
+        <!-- id = close-->
         <p>Projects</p>
 
-        <div class="viewProjects">
+        <div class="projectListContainer">
+          <!-- viewProjects-->
           <div class="projectList"></div>
           <form>
             <input
               type="text"
-              name="projectTitle"
-              id="addProjectTitle"
+              name="projectName"
+              id="inputCreateProject"
               placeholder="Enter project name"
             />
           </form>
-          <button class="addProject" type="button">+ Add Project</button>
+          <button class="createProjectButton" type="button">
+            + Create Project
+          </button>
+          <!-- addProject-->
         </div>
       </div>
 
-      <div class="mainContainer">
-        <div class="projectTitleContainer">
+      <!-- Tasks Pane -->
+
+      <div class="taskPaneContainer">
+        <!--mainContainer-->
+        <div class="projectNameContainer">
+          <!--projectTitleContainer-->
           <p class="projectName"></p>
-          <i class="fas fa-pen"></i>
-          <i class="fas fa-trash" id = "projectTrash"></i>
+          <div class="projectNameIcons">
+            <i class="fas fa-pen" id="editProjectNameIcon"></i>
+            <i class="fas fa-trash" id="deleteProjectIcon"></i>
+          </div>
+          <!-- id = projectTrash-->
         </div>
-        <div class="tasksList"></div>
+        <div class="taskList"></div>
       </div>
-      <button type="button" class="addTask">+ Add Task</button>
-      <div class="formContainer">
+      <button type="button" class="addTaskButton">+ Add Task</button>
+      <!-- addTask-->
+
+      <!-- Form for Add Task -->
+      <div class="addTaskFormContainer">
+        <!--formContainer-->
         <form>
           <ul>
             <li>
-              <label for="taskTitle">Task Title</label>
+              <label for="taskName">Task Name</label>
               <input
                 type="text"
-                name="taskTitle"
-                id="taskTitle"
-                placeholder="Enter Task Title"
+                name="taskName"
+                id="taskName"
+                placeholder="Enter Task Name"
               />
             </li>
             <li>
               <label for="dateDue">Date Due</label>
-              <input
-                type="date"
-                name="dateDue"
-                id="dateDue"
-              />
+              <input type="date" name="dateDue" id="dateDue" />
             </li>
             <li>
               <label>Project</label>
-              <select class = "projectCategory">
-              </select>
+              <select class="projectCategory"> </select>
             </li>
 
             <li>
@@ -90,26 +103,34 @@
               ></textarea>
             </li>
           </ul>
-          <div class="buttonContainer">
+          <div class="addTaskButtonContainer">
+            <!--buttonContainer-->
             <button type="button" class="cancelButton">Cancel</button>
-            <button type="button" class="save">Save</button>
+            <button type="button" class="saveButton">Save</button>
+            <!--save-->
           </div>
         </form>
       </div>
 
-      <div class="popupContainer">
-          <div class="popUp">
-            <p class = "warning">Warning!</p>
-            <p class = "warningText">Are you sure you want to delete this project? All tasks under it will also be deleted.</p>
-            <div class="warningButtons">
-              <button type = "button" class = "no">NO</button>
-              <button type = "button" class = "yes">YES</button>
-            </div>
-          
+      <!-- Warning Message when Deleting a Project-->
+      <div class="warningPopupContainer">
+        <!--popupContainer-->
+        <div class="warningPopup">
+          <!--popUp-->
+          <p class="warningTitle">Warning!</p>
+          <!-- warning-->
+          <p class="warningText">
+            Are you sure you want to delete this project? All tasks under it
+            will also be deleted.
+          </p>
+          <div class="warningButtons">
+            <button type="button" class="noButton">NO</button>
+            <!-- no-->
+            <button type="button" class="yesButton">YES</button>
+            <!-- yes-->
           </div>
+        </div>
       </div>
-
     </div>
-  
   </body>
 </html>

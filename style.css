@@ -1,5 +1,7 @@
 * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -9,181 +11,166 @@ body {
   padding: 0;
   font-family: "Open Sans", sans-serif;
   height: 100vh;
-  background: linear-gradient(
-    180deg,
-    rgba(92, 158, 173, 0.2) 0%,
-    rgba(196, 196, 196, 0) 52.6%
-  );
 }
 
 /* ===============
-Styling the burger nav
+Burger Navigation Menu
 ================== 
 */
-.burgerNav {
-  z-index: 1;
+.burgerNavigationMenu {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1;
   padding: 1.2em;
 }
 
-#burger {
+#burgerIcon {
   color: #326273;
 }
 
-#close {
-  color: #ffffff;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+#closeIcon {
   z-index: 2;
-  padding: 0.6em 0em 1em 0.6em;
+  padding: 0.6em 0 1em 0.6em;
+  color: #326273;
 }
+
 /*==================== 
-Styling the projects section 
+Project Pane
 =======================
 */
-.projectContainer {
+.projectsContainer {
   position: fixed;
+  z-index: 1;
   top: 0;
   left: -60vw;
-  padding: 0em 0em 2em 0em;
-  z-index: 1;
-  background: linear-gradient(180deg, #326273 0%, #5c9ead 100%);
+  padding-bottom: 2em;
   height: 100vh;
   width: 60vw;
-
-  /* Style the transition */
+  border-right: 0.5px solid #c4c4c4;
+  background-color: #ffffff;
+ 
+  /* Style the transition when clicking the burger or close icon */
   -webkit-transition: left 0.5s ease;
-  -moz-transition: left 0.5s ease;
-  -ms-transition: left 0.5s ease;
-  -o-transition: left 0.5s ease;
-  transition: left 0.5s ease;
+     -moz-transition: left 0.5s ease;
+      -ms-transition: left 0.5s ease;
+       -o-transition: left 0.5s ease;
+          transition: left 0.5s ease;
 }
 
-.projectContainer.expanded {
+/* Move the project container to the left when the burger or close icon is clicked */
+.projectsContainer.expanded {
   left: 0;
 }
 
-.projectContainer > p {
-  font-size: 1.7em;
-  font-weight: bold;
-  color: #e39774;
+/* Projects word */
+.projectsContainer > p {
+  padding: 2em;
+  font-size: 1em;
+  font-weight: bolder;
   text-transform: uppercase;
-  padding: 1em 0 1em 1em;
+  color: #326273;
 }
 
-.viewProjects {
-  padding-top: 1em;
-}
-
+/* Project Name */
 .projectList p {
-  border-top: 0.3px solid #c4c4c4;
-  font-size: 1em;
-  padding: 0.6em 2em 0.6em 2em;
-  font-weight: bold;
-  color: #ffffff;
+  font-size: 1.5em;
+  padding: 0.3em 2em;
+  font-weight: bolder;
+  color: #000000;
 }
 
-/* Prevent the borders from "overlapping" */
-.projectList p:last-child {
-  border-bottom: 0.3px solid #c4c4c4;
-}
-
-#addProjectTitle {
+#inputCreateProject {
   display: none;
+  width: 100%;
+  padding: 1em 0.2em 0.8em 3.6em;
+  margin-bottom: 2em;
   border: none;
   outline: none;
   background: none;
-  font-size: 1em;
-  padding: 1em 2em 1em 2em;
-  margin-bottom: 2em;
+  font-size: 0.8em;
   font-weight: bold;
-  color: #ffffff;
-  width: 100%;
+  color: #000000;
 }
 
-::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #ffffff;
-  opacity: 0.7; /* Firefox */
+/* Placeholder for inputCreateProject */
+::placeholder,
+:-ms-input-placeholder,
+::-ms-input-placeholder{
+  color: #c4c4c4;
+  opacity: 0.7; 
   font-weight: lighter;
-  font-size: 0.8em;
+  font-size: 0.5em;
 }
 
-:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: #ffffff;
-  opacity: 0.7;
-  font-weight: lighter;
-  font-size: 0.8em;
-}
-
-::-ms-input-placeholder {
-  /* Microsoft Edge */
-  color: #ffffff;
-  opacity: 0.7;
-  font-weight: lighter;
-  font-size: 0.8em;
-}
-
-.addProject {
+.createProjectButton {
+  padding: 2em 2em;
+  background: none;
   border: none;
   outline: none;
   color: #e39774;
-  padding: 1.2em 1.5em 1.5em 1.5em;
-  background: none;
-  font: 1em "Open Sans", sans-serif;
+  font: 0.7em "Open Sans", sans-serif;
   font-weight: bolder;
   text-transform: uppercase;
 }
 
 /*====================
-Styling the main container section
+Tasks Pane
 ======================
 */
 
-.mainContainer {
+.taskPaneContainer {
   display: flex;
   flex-flow: column;
-  align-items: center;
   justify-content: center;
 }
 
-/*Styling the project title*/
-.projectTitleContainer {
-  margin-top: 7em;
+.projectNameContainer {
+  margin: 6em 1em 0 1.2em;
   display: none;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.projectTitleContainer i {
-  color: #32627385;
-  margin-left: 1em;
+.projectNameContainer i {
+  color: #c4c4c4;
+  margin-left: 0.5em;
 }
 
 .projectName {
-  font: 3em "Comfortaa", sans-serif;
-  font-weight: lighter;
+  font: 3em "Ubuntu", sans-serif;
+  font-weight: bolder;
   color: #326273;
   text-transform: uppercase;
 }
 
-/*Styling the tasks*/
-.tasksList {
+/*Tasks*/
+.taskList {
+  width: 100%;
   margin-top: 3em;
   font-size: 0.75em;
-  width: 92%;
-  text-align: center;
 }
 
 .task {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.7em 1em 0.7em 1em;
-  margin: 0.8em;
-  background-color: #5c9ead;
-  color: white;
-  border-radius: 10px;
+  padding: 1em 1.5em;
+  border-top: 0.5px solid #c4c4c4;
+}
+
+.task:last-of-type {
+  border-bottom: 0.5px solid #c4c4c4;
+}
+
+.taskDetailsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.taskDetails {
+  margin-left: 2em;
 }
 
 .taskStatus {
@@ -194,54 +181,56 @@ Styling the main container section
 }
 
 .taskName {
-  flex-basis: 10em;
+  font-size: 1.7em;
 }
 
-.dueDate {
-  flex-basis: 2em;
+.dateDue {
+  color: #5c9ead;
 }
 
-#taskToTrash{
+#deleteTaskIcon{
   padding-left: 1em;
+  color: #c4c4c4;
 }
 
-.addTask {
+.addTaskButton {
+  display: none;
   background: none;
-  color: #e39774;
+  padding: 2em 7.5vw;
   border: none;
   outline: none;
-  text-transform: uppercase;
-  font-weight: bolder;
-  padding: 2em 7.5vw;
   font-size: 0.8em;
-  display: none;
+  font-weight: bolder;
+  text-transform: uppercase;
+  color: #e39774;
 }
 
 /*==============
-Stling the form
+Add Task Form
 ================
 */
 
-.formContainer, .popupContainer {
-  background: rgba(238, 238, 238, 0.6);
-  height: 100vh;
-  width: 100vw;
-  z-index: 1;
-  position: fixed;
-  top: 0;
-  left: 0;
+.addTaskFormContainer, 
+.warningPopupContainer {
   display: none;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+  background: rgba(238, 238, 238, 0.6);
 }
 
-.formContainer form{
-  background: #ffffff;
+.addTaskFormContainer form{
+  width: 90vw;
   padding: 1.2em;
+  background: #ffffff;
   border: 1px solid #c4c4c4;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  width: 90vw;
 }
 
 ul {
@@ -252,86 +241,87 @@ li {
   padding: 0.4em;
 }
 
-label {
-  display: block;
-  color: #326273;
-  text-transform: uppercase;
-  font-weight: bolder;
-  padding-bottom: 0.5em;
-}
-
 li input {
+  width: 100%;
+  padding: 0.5em;
   outline: none;
   border: none;
   border-bottom: 1px solid #c4c4c4;
-  padding: 0.5em;
-  color: #326273;
-  width: 100%;
   font-family: "Open Sans", sans-serif;
+  color: #326273;
+}
+
+label {
+  display: block;
+  padding-bottom: 0.5em;
+  font: bolder "Ubuntu", sans-serif;
+  color: #326273;
+  text-transform: uppercase;
 }
 
 select {
   width: 100%;
-  outline: none;
   padding: 0.5em;
-  border: 1px solid #c4c4c4;
+  outline: none;
+  border: 0.5px solid #c4c4c4;
   color: #326273;
 }
 
 textarea {
   width: 100%;
-  font-family: "Open Sans", sans-serif;
-  border: 1px solid #c4c4c4;
-  color: #326273;
   padding: 0.5em;
   outline: none;
+  border: 1px solid #c4c4c4;
+  font-family: "Open Sans", sans-serif;
+  color: #326273;
 }
 
-.buttonContainer {
+.addTaskButtonContainer {
   text-align: right;
   margin: 0.8em;
 }
 
 .cancelButton {
+  margin-right: 1.5em;
   border: none;
   outline: none;
   color: #5c9ead;
+  font-weight: bold;
   text-transform: uppercase;
-  margin-right: 1.5em;
 }
 
-.save {
+.saveButton {
+  width: 6em;
+  padding: 1em;
   border: none;
   outline: none;
   border-radius: 5px;
   background: #e39774;
-  color: #ffffff;
-  text-transform: uppercase;
   font-weight: bold;
-  padding: 1em;
-  width: 6em;
+  color: #ffffff;
+  text-transform: uppercase; 
 }
 
 /*================
-Styling the pop up 
+Warning Message
 =================
 */
 
-.popUp{
+.warningPopup{
+  width: 80vw;
   background: #ffffff;
   border: 1px solid #c4c4c4;
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  width: 80vw;
-
 }
-.warning{
-  font-size: 1em;
-  color: #ffffff;
-  background-color: #dd4641;
+
+.warningTitle{
   padding: 0.6em;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  background-color: #dd4641;
+  font-size: 1em;
+  color: #ffffff;
 }
 
 .warningText{
@@ -347,21 +337,21 @@ Styling the pop up
 
 .warningButtons button{
   width: 100%;
-  font-size: 1em;
   border: none;
   outline: none;
   background: none;
   padding: 0.5em;
   border-top: 1px solid #c4c4c4;
   border-right: 1px solid #c4c4c4;
+  font-size: 1em;
 }
 
-.no{
+.noButton{
   color: #326273;
   font-weight: bolder;
 }
 
-.yes{
+.yesButton{
   color: #dd4641;
   font-weight: bold;
 }
