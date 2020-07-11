@@ -1,154 +1,181 @@
 const ManipulateDOM = (() => {
 
     /*FROM HTML: For burger menu and project container */
-    const burgerNav = document.querySelector(".burgerNav");
-    const projectContainer = document.querySelector(".projectContainer");
-    const close = document.querySelector("#close");
-    const inputProject = document.querySelector('#addProjectTitle');
-    const addProjectButton = document.querySelector('.addProject');
-    let projectTitleName = document.querySelector(".projectName");
-    const projectTitleContainer = document.querySelector(".projectTitleContainer");
-    const projectCategory = document.querySelector(".projectCategory");
+    const burgerIcon            = document.querySelector('#burgerIcon');
+    const projectsContainer     = document.querySelector('.projectsContainer');
+    const closeIcon             = document.querySelector('#closeIcon');
+    const inputCreateProject    = document.querySelector('#inputCreateProject');
+    const createProjectButton   = document.querySelector('.createProjectButton');
+    const projectNameContainer  = document.querySelector('.projectNameContainer');
+      let projectName           = document.querySelector('.projectName');
+      let projectList           = document.querySelector('.projectList');
 
-    /*FROM HTML: For task list and task form */
-    const addTaskButton = document.querySelector(".addTask");
-    const formContainer = document.querySelector(".formContainer");
+    /*For task pane and add task form */
+    const addTaskButton         = document.querySelector('.addTaskButton');
+    const addTaskFormContainer  = document.querySelector('.addTaskFormContainer');
+    const projectCategory       = document.querySelector('.projectCategory');
+    const deleteProjectIcon     = document.querySelector('#deleteProjectIcon');
+      let taskList              = document.querySelector(".taskList");
     
-    const popUp = document.querySelector(".popupContainer");
-    const noOption = document.querySelector(".no");
-    const projectTrash = document.querySelector("#projectTrash");
-    
-    let projectList = document.querySelector(".projectList");
-    let taskList = document.querySelector(".tasksList");
+    /* For warning message */
+    const warningPopupContainer                 = document.querySelector(".warningPopupContainer");
+    const noButton              = document.querySelector(".noButton");
 
-    /*For burger and project container*/
-    const burgerToggle = ()=> {
-      burgerNav.addEventListener('click', () =>{
-            projectContainer.classList.toggle('expanded');
+    /* ==========================================================
+       BURGER NAVIGATION MENU AND PROJECT PANE
+       ==========================================================
+    */
+    const burgerToggle = () => {
+      burgerIcon.addEventListener('click', () => {
+            projectsContainer.classList.toggle('expanded');
         })
-        close.addEventListener("click", ()=>{
-            projectContainer.classList.toggle('expanded');
+      closeIcon.addEventListener('click', () => {
+            projectsContainer.classList.toggle('expanded');
             hideProjectForm();
         })
     };
     
-    const showProjectForm = ()=>{
-        addProjectButton.addEventListener("click", () =>{
-            addProjectButton.style.display = "none";
-            inputProject.style.display = "block";
+    const showProjectForm = () => {
+        createProjectButton.addEventListener('click', () => {
+            createProjectButton.style.display = 'none';
+            inputCreateProject.style.display = 'block';
         })
     };
 
-    const hideProjectForm = () =>{
-        addProjectButton.style.display = "block";
-        inputProject.style.display = "none";
+    const hideProjectForm = () => {
+        createProjectButton.style.display = 'block';
+        inputCreateProject.style.display = 'none';
     }
 
-    const createProjectElem = (array) =>{
-        let name = document.createElement("p");
-        name.textContent = array;
-        projectList.appendChild(name);
+    const createProject = (array) => {
+        let createProjectName = document.createElement('p');
+        createProjectName.textContent = array;
+        projectList.appendChild(createProjectName);
     }
 
-    /*For tasklist and task form */
-    const showTaskByAdd = () =>{
-        addTaskButton.addEventListener("click", ()=>{
+     /* ==========================================================
+       TASK PANE 
+       ==========================================================
+    */
+
+    const displayProjectName = (name) => {
+        projectName.textContent = name;
+        projectNameContainer.style.display = 'flex';
+        addTaskButton.style.display = 'block';
+    }
+
+    const deleteProjectName = () => {
+        projectName.textContent = '';
+        projectNameContainer.style.display = 'none';
+        addTaskButton.style.display = 'none';
+    }
+
+    /* ==========================================================
+       ADD TASK 
+       ==========================================================
+    */
+
+    const clickAddToShowForm = () =>{
+        addTaskButton.addEventListener('click', () => {
             showTaskForm();
         })
     }
-    const showTaskForm = ()=>{
-        formContainer.style.display = "flex";
+
+    const showTaskForm = () => {
+        addTaskFormContainer.style.display = 'flex';
     }
 
-    const hideTaskForm = () =>{
-        formContainer.style.display = "none";
+    const hideTaskForm = () => {
+        addTaskFormContainer.style.display = 'none';
     }
 
-    const createTaskElement = (object, position) =>{
-        const div = document.createElement("div");
-        div.className = "task";
-        div.id = position;
+    const createTaskElement = (object, position) => {
+        const task = document.createElement('div');
+        task.className = 'task';
+        task.id = position;
 
-        const input = document.createElement("input");
-        input.type = "checkbox";
-        input.className = "taskStatus";
+        const taskDetails = document.createElement('div');
+        taskDetails.className = 'taskDetails';
+
+        const taskDetailsContainer = document.createElement('div');
+        taskDetailsContainer.className = 'taskDetailsContainer';
+
+        const statusCheckbox = document.createElement('input');
+        statusCheckbox.type = 'checkbox';
+        statusCheckbox.className = 'taskStatus';
        
-        let taskName = document.createElement("p");
-        taskName.className = "taskName";
+        let taskName = document.createElement('p');
         taskName.textContent = object.taskName;
+        taskName.className = 'taskName';
 
-        let dueDate = document.createElement("p");
-        dueDate.className = "dueDate";
-        dueDate.textContent = `Due ${object.dueDate}`;
+        let dateDue = document.createElement('p');
+        dateDue.textContent = object.dateDue;
+        dateDue.className = "dateDue";
 
-        const trashCan = document.createElement("i");
-        trashCan.className = "far fa-trash-alt fa-2x";
-        trashCan.id = "taskToTrash";
+        const deleteTaskIcon = document.createElement('i');
+        deleteTaskIcon.className = 'far fa-trash-alt fa-2x';
+        deleteTaskIcon.id = 'deleteTaskIcon';
         
-        if(object.status == "Complete"){
-            input.checked = true;
-            div.style.backgroundColor = "#E5E5E5";
+        if(object.status == 'Complete'){
+            statusCheckbox.checked = true;
         }
         
-        div.append(input, taskName, dueDate, trashCan);
-        taskList.append(div);
+        taskDetails.append(taskName, dateDue);
+        taskDetailsContainer.append(statusCheckbox, taskDetails)
+        task.append(taskDetailsContainer, deleteTaskIcon);
+        taskList.append(task);
     }
 
-    const createProjectTitle = (title) =>{
-        projectTitleName.textContent = title;
-        projectTitleContainer.style.display = "flex";
-        addTaskButton.style.display = "block";
+    const deleteTaskList = () => {
+        taskList.innerHTML = '';
     }
 
-    const deleteProjectTitle = () =>{
-        projectTitleName.textContent = "";
-        projectTitleContainer.style.display = "none";
-        addTaskButton.style.display = "none";
-    }
-
-    const deleteTasksList = ()=>{
-        taskList.innerHTML = "";
-    }
-
-    const addProjectOption = (projectName) =>{
-        let option = document.createElement("option");
+    const addProjectOption = (projectName) => {
+        let option = document.createElement('option');
         option.className = projectName;
         option.textContent = projectName;
         projectCategory.appendChild(option);
     }
 
-    const showDeletePopUp = () =>{
-        projectTrash.addEventListener("click", ()=>{
-            popUp.style.display = "flex";
+    /* ==========================================================
+        DELETING A PROJECT
+       ==========================================================
+    */
+    const showWarningMessage = () => {
+        deleteProjectIcon.addEventListener('click', () => {
+            warningPopupContainer.style.display = 'flex';
         })
     }
 
-    const hideDeletePopUp = () =>{
-        popUp.style.display = "none";
+    const hideWarningMessage = () => {
+        warningPopupContainer.style.display = 'none';
     }
 
-    const pressNo = ()=>{
-        noOption.addEventListener("click", ()=>{
-            hideDeletePopUp();
+    const cancelDeleteProject = () => {
+        noButton.addEventListener('click', () => {
+            hideWarningMessage();
         })
     }
 
     return {
         burgerToggle, 
         showProjectForm, 
-        createProjectElem,
-        createProjectTitle, 
-        deleteProjectTitle,
-        deleteTasksList,
-        addProjectOption,
         hideProjectForm,
-        showTaskByAdd,
+
+        createProject,
+        displayProjectName, 
+        deleteProjectName,
+
+        clickAddToShowForm,
         showTaskForm,
         hideTaskForm,
         createTaskElement,
-        hideDeletePopUp,
-        pressNo,
-        showDeletePopUp,
+        deleteTaskList,
+        addProjectOption,
+        
+        showWarningMessage,
+        hideWarningMessage,
+        cancelDeleteProject
     };
   
   })();

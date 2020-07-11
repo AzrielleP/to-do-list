@@ -3,15 +3,17 @@ import ManipulateData from './Data.js';
 
 ManipulateDOM.burgerToggle();
 ManipulateDOM.showProjectForm();
-ManipulateDOM.showTaskByAdd();
-ManipulateDOM.pressNo();
-ManipulateDOM.showDeletePopUp();
+
+ManipulateDOM.clickAddToShowForm();
+ManipulateDOM.cancelDeleteProject();
+ManipulateDOM.showWarningMessage();
 
 ManipulateData.addProject();
 ManipulateData.viewProjectTasks();
-ManipulateData.cancelAddTask();
 ManipulateData.deleteProject();
-ManipulateData.deleteTask();
+
 ManipulateData.addTask();
+ManipulateData.cancelAddTask();
+ManipulateData.deleteTask();
 ManipulateData.editTask();
 ManipulateData.changeTaskStatus();
