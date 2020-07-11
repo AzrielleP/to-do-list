@@ -135,6 +135,7 @@ Tasks Pane
 }
 
 .projectNameContainer {
+  width: 90%;
   margin: 6em 1em 0 1.2em;
   display: none;
   align-items: center;
@@ -147,6 +148,17 @@ Tasks Pane
 }
 
 .projectName {
+  font: 3em "Ubuntu", sans-serif;
+  font-weight: bolder;
+  color: #326273;
+  text-transform: uppercase;
+}
+
+#editProjectNameInput {
+  display: none;
+  border: none;
+  outline: none;
+  width: 100%;
   font: 3em "Ubuntu", sans-serif;
   font-weight: bolder;
   color: #326273;
