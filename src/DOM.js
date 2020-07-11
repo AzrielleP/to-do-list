@@ -11,6 +11,8 @@ const ManipulateDOM = (() => {
       let projectList           = document.querySelector('.projectList');
 
     /*For task pane and add task form */
+    const editProjectNameIcon   = document.querySelector('#editProjectNameIcon');
+    const editProjectNameInput  = document.querySelector('#editProjectNameInput');
     const addTaskButton         = document.querySelector('.addTaskButton');
     const addTaskFormContainer  = document.querySelector('.addTaskFormContainer');
     const projectCategory       = document.querySelector('.projectCategory');
@@ -62,6 +64,25 @@ const ManipulateDOM = (() => {
         projectName.textContent = name;
         projectNameContainer.style.display = 'flex';
         addTaskButton.style.display = 'block';
+    }
+
+    const showEditProjectForm = () => {
+        editProjectNameIcon.addEventListener('click', () => {
+            projectName.style.display = 'none';
+            editProjectNameInput.style.display = 'block';
+            editProjectNameInput.value = projectName.textContent;
+            editProjectNameIcon.style.display = 'none';
+            deleteProjectIcon.style.display = 'none';
+        })
+        
+    }
+
+    const hideEditProjectForm = () => {
+        projectName.style.display = 'block';
+        editProjectNameInput.style.display = 'none';
+        editProjectNameInput.value = '';
+        editProjectNameIcon.style.display = 'inline-block';
+        deleteProjectIcon.style.display = 'inline-block';
     }
 
     const deleteProjectName = () => {
@@ -157,6 +178,22 @@ const ManipulateDOM = (() => {
         })
     }
 
+    /* ==========================================================
+        AUTOFOCUS FUNCTION WHEN CREATING AND EDITING A PROJECT
+       ==========================================================
+    */
+
+    const autofocusInput = () => {
+        createProjectButton.addEventListener('click', () => {
+            document.querySelector('#inputCreateProject').focus();
+        })
+
+        editProjectNameIcon.addEventListener('click', () => {
+            document.querySelector('#editProjectNameInput').focus();
+        })
+
+    }
+
     return {
         burgerToggle, 
         showProjectForm, 
@@ -164,6 +201,8 @@ const ManipulateDOM = (() => {
 
         createProject,
         displayProjectName, 
+        showEditProjectForm,
+        hideEditProjectForm,
         deleteProjectName,
 
         clickAddToShowForm,
@@ -175,7 +214,9 @@ const ManipulateDOM = (() => {
         
         showWarningMessage,
         hideWarningMessage,
-        cancelDeleteProject
+        cancelDeleteProject,
+
+        autofocusInput
     };
   
   })();

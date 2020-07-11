@@ -5,21 +5,23 @@ const ManipulateData = (() =>{
     let data = [];
 
     const projectsContainer     = document.querySelector('.projectsContainer');
-    const inputCreateProject = document.querySelector('#inputCreateProject');
-    let projectList = document.querySelector('.projectList');
+    const inputCreateProject    = document.querySelector('#inputCreateProject');
+    const editProjectNameIcon   = document.querySelector('#editProjectNameIcon');
+    const editProjectNameInput  = document.querySelector('#editProjectNameInput');
+      let projectList           = document.querySelector('.projectList');
 
-    /* From the addTaskForm */
-    const taskList = document.querySelector(".taskList");
-    const taskName = document.querySelector("#taskName");
-    const dateDue = document.querySelector("#dateDue");
-    const notes = document.querySelector("#notes");
-    const projectCategory = document.querySelector(".projectCategory");
-    const cancelButton = document.querySelector(".cancelButton");
-    const saveButton = document.querySelector(".saveButton");
+    // From the addTaskForm
+    const taskList              = document.querySelector(".taskList");
+    const taskName              = document.querySelector("#taskName");
+    const dateDue               = document.querySelector("#dateDue");
+    const notes                 = document.querySelector("#notes");
+    const projectCategory       = document.querySelector(".projectCategory");
+    const cancelButton          = document.querySelector(".cancelButton");
+    const saveButton            = document.querySelector(".saveButton");
 
-    let projectTitleName = document.querySelector(".projectName");
+      let projectName           = document.querySelector(".projectName");
     
-    const yesButton = document.querySelector(".yesButton");
+    const yesButton             = document.querySelector(".yesButton");
     
 
     // Function Factories
@@ -38,14 +40,14 @@ const ManipulateData = (() =>{
 
     // Add Project on Project Pane
     const addProject = () => {
-        inputCreateProject.addEventListener("keydown", event=> {
-            if(event.key == "Enter"){
+        inputCreateProject.addEventListener('keydown', event=> {
+            if(event.key == 'Enter') {
                 event.preventDefault();
-                if(inputCreateProject.value !== ""){
+                if(inputCreateProject.value !== '') {
                     data.push(projectMaker(inputCreateProject.value, []));
                     renderProject(data);
                 }
-                inputCreateProject.value = "";
+                inputCreateProject.value = '';
                 ManipulateDOM.hideProjectForm();
             }
             event.stopPropagation();
@@ -54,8 +56,8 @@ const ManipulateData = (() =>{
 
     // renderProject iterates over the data array and displays the elements inside the array to the webpage
     const renderProject = (object) =>{
-        projectList.innerHTML = "";
-        projectCategory.innerHTML= "";
+        projectList.innerHTML = '';
+        projectCategory.innerHTML= '';
         let projectArray = object.map(a => a.projectName);
         for(let i = 0; i < projectArray.length; i++){
             ManipulateDOM.createProject(projectArray[i]);
@@ -64,8 +66,8 @@ const ManipulateData = (() =>{
     }
 
     const viewProjectTasks = () => {
-        projectList.addEventListener("click", event =>{
-            if(event.target !== event.currentTarget){
+        projectList.addEventListener("click", event => {
+            if(event.target !== event.currentTarget) {
                 // When a project name is clicked on the project pane, find that project name on the data array
                 let openProject = data.findIndex(name => name.projectName == event.target.textContent );
                 ManipulateDOM.displayProjectName(event.target.textContent);
@@ -81,9 +83,27 @@ const ManipulateData = (() =>{
        ==========================================================
     */
 
-     const deleteProject = () =>{
-        yesButton.addEventListener("click", () =>{
-            let searchProject = data.findIndex(name => name.projectName == projectTitleName.textContent);
+    /* EDIT AND DELETE A PROJECT */
+    const editProjectName = () => {
+        editProjectNameInput.addEventListener('keydown', () => {
+            if(event.key == "Enter"){
+                event.preventDefault();
+                let searchProject = data.findIndex(name => name.projectName == projectName.textContent);
+                if(editProjectNameInput.value !== ''){
+                    data[searchProject].projectName = editProjectNameInput.value;
+                    projectName.textContent = editProjectNameInput.value;
+                    renderProject(data);
+                }
+                inputCreateProject.value = "";
+                ManipulateDOM.hideEditProjectForm();
+            }
+            event.stopPropagation();
+        })
+    }
+
+     const deleteProject = () => {
+        yesButton.addEventListener('click', () => {
+            let searchProject = data.findIndex(name => name.projectName == projectName.textContent);
             data.splice(searchProject, 1);
             ManipulateDOM.hideWarningMessage();
             ManipulateDOM.deleteProjectName();
@@ -93,10 +113,12 @@ const ManipulateData = (() =>{
         })
     }
 
+    /* ADDING A TASK */
+
     const addTask = () => {
         saveButton.addEventListener('click', () => {
             // openProject finds the project name of the project that we're currently at
-            let openProject = data.findIndex(name => name.projectName ==projectTitleName.textContent );
+            let openProject = data.findIndex(name => name.projectName ==projectName.textContent );
 
             //putInProject finds the project name on the data array based on what the user selected under the select element
             let putInProject = data.findIndex(name => name.projectName == projectCategory.value);
@@ -135,12 +157,14 @@ const ManipulateData = (() =>{
         notes.value = '';
     }
 
+    /* DELETE AND EDIT A TASK */
+
     const deleteTask = () => {
         document.addEventListener('click', event => {
             if(event.target.id == 'deleteTaskIcon') {
                 /* Find the index of the task to be deleted */
                 let parentNodeId = event.target.parentNode.id;
-                let searchProject = data.findIndex(name => name.projectName == projectTitleName.textContent);
+                let searchProject = data.findIndex(name => name.projectName == projectName.textContent);
 
                 data[searchProject].tasks.splice(parentNodeId, 1);
                 renderTask(data[searchProject].tasks);
@@ -153,7 +177,7 @@ const ManipulateData = (() =>{
             if(event.target.className == 'task') {
                 ManipulateDOM.showTaskForm();
                 let parentNodeId = Number(event.target.parentNode.id);
-                let searchProject = data.findIndex(name => name.projectName == projectTitleName.textContent);
+                let searchProject = data.findIndex(name => name.projectName == projectName.textContent);
 
                 /* Load the data to the inputs */
                 taskName.value = data[searchProject].tasks[parentNodeId].taskName;
@@ -177,7 +201,7 @@ const ManipulateData = (() =>{
         document.addEventListener('click', event => {
             if(event.target.className == 'taskStatus') {
                 let parentNodeId = Number(event.target.parentNode.id);
-                let searchProject = data.findIndex(name => name.projectName == projectTitleName.textContent);
+                let searchProject = data.findIndex(name => name.projectName == projectName.textContent);
 
                 let taskStatusToChange = data[searchProject].tasks[parentNodeId];
                 if (event.target.checked) {
@@ -195,6 +219,7 @@ const ManipulateData = (() =>{
     return {
         addProject,
         viewProjectTasks, 
+        editProjectName,
         addTask,
         cancelAddTask, 
         deleteProject,
