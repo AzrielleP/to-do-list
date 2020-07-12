@@ -60,6 +60,7 @@
               name="editProjectName"
               id="editProjectNameInput"
               autofocus
+              required
             />
           </form>
           <div class="projectNameIcons">
@@ -69,12 +70,12 @@
         </div>
 
         <div class="taskList"></div>
-          <div class="noTaskImgContainer"></div>
-          <div class="noProjectImgContainer"></div>
-      </div>
-      <button type="button" class="addTaskButton">+ Add Task</button>
-      <!-- addTask-->
+        <div class="noTaskImgContainer"></div>
+        <div class="noProjectImgContainer"></div>
+        <button type="button" class="addTaskButton">+ Add Task</button>
 
+      </div>
+      
       <!-- Form for Add Task -->
       <div class="addTaskFormContainer">
         <!--formContainer-->
@@ -87,6 +88,7 @@
                 name="taskName"
                 id="taskName"
                 placeholder="Enter Task Name"
+                required
               />
             </li>
             <li>
@@ -110,8 +112,8 @@
           </ul>
           <div class="addTaskButtonContainer">
             <!--buttonContainer-->
-            <button type="button" class="cancelButton">Cancel</button>
-            <button type="button" class="saveButton">Save</button>
+            <button type = "button" class="cancelButton">Cancel</button>
+            <button class = "saveButton">Save</button>
             <!--save-->
           </div>
         </form>
