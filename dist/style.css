@@ -43,10 +43,10 @@ Project Pane
   position: fixed;
   z-index: 1;
   top: 0;
-  left: -60vw;
+  left: -50vw;
   padding-bottom: 2em;
   height: 100vh;
-  width: 60vw;
+  width: 50vw;
   border-right: 0.5px solid #c4c4c4;
   background-color: #ffffff;
  
@@ -74,7 +74,7 @@ Project Pane
 
 /* Project Name */
 .projectList p {
-  font-size: 1.5em;
+  font-size: 1.2em;
   padding: 0.3em 2em;
   font-weight: bolder;
   color: #000000;
@@ -178,15 +178,15 @@ Tasks Pane
 
 .noTaskImgContainer {
   display: none;
-  background: url('images/NoTasks.png') no-repeat center center/cover;
+  background: url('images/NoTasks.png') no-repeat center center/contain;
   height: 50vh;
   width: 100%;
 }
 
 .noProjectImgContainer {
   display: none;
-  margin-top: 5em;
-  background: url('images/NoProjects.png') no-repeat center center/cover;
+  margin: auto;
+  background: url('images/NoProjects.png') no-repeat center center/contain;
   height: 50vh;
   width: 100%;
 }
@@ -210,6 +210,7 @@ Tasks Pane
 }
 
 .taskDetails {
+  width: 60vw;
   margin-left: 2em;
 }
 
@@ -221,6 +222,8 @@ Tasks Pane
 }
 
 .taskName {
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 1.7em;
 }
 
@@ -300,12 +303,17 @@ label {
   text-transform: uppercase;
 }
 
+#dateDue {
+  background: none;
+}
+
 select {
   width: 100%;
   padding: 0.5em;
   outline: none;
   border: 0.5px solid #c4c4c4;
   color: #326273;
+  background: none;
 }
 
 textarea {
@@ -329,6 +337,7 @@ textarea {
   color: #5c9ead;
   font-weight: bold;
   text-transform: uppercase;
+  background: none;
 }
 
 .saveButton {
@@ -398,3 +407,182 @@ Warning Message
 }
 
 
+@media screen and (max-width:321px){
+  .projectsContainer {
+    left: -60vw;
+    width: 60vw;
+  }
+}
+
+@media screen and (min-width: 480px){
+
+  .parentContainer {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+  }
+
+  /* PROJECT PANE */
+  .burgerNavigationMenu {
+    display: none;
+  }
+
+  #closeIcon {
+    visibility: hidden;
+  }
+
+  .projectsContainer {
+    position: static;
+    left: 0vw;
+    width: 30vw;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .projectListContainer {
+    width: inherit;
+  }
+
+  #inputCreateProject {
+    padding-left: 3em;
+  }
+
+  /* TASK PANE */
+  .projectNameContainer {
+    margin-top: 5.2em;
+  }
+
+  .noProjectImgContainer {
+    width: 60vw;
+  }
+
+  .taskPaneContainer { 
+    width: 70vw;
+    justify-content: flex-start;
+  }
+
+  .taskDetails { 
+    width: inherit;
+  }
+
+  .addTaskFormContainer form {
+    width: 65vw;
+  }
+
+  .addTaskButton {
+    margin: 0;
+  }
+
+  /* Warning Message */
+  .warningPopup {
+    width: 50vw;
+  }
+}
+
+@media screen and (min-width:1024px){
+
+  /* HOVER */
+  .projectList p,
+  .createProjectButton,
+  .addTaskButton,
+  .cancelButton,
+  .saveButton,
+  i,
+  .projectList p,
+  .taskStatus,
+  .task,
+  .taskName {
+    cursor: pointer;
+  }
+
+  .createProjectButton:hover,
+  .addTaskButton:hover {
+    color: #5c9ead;
+  }
+
+  .saveButton:hover {
+    background: #5c9ead;
+  }
+
+  .cancelButton:hover {
+    color: #c4c4c4;
+  }
+
+  #editProjectNameIcon:hover {
+    color: #5c9ead;
+  }
+
+  #deleteProjectIcon:hover,
+  #deleteTaskIcon:hover {
+    color: #dd4641;
+  }
+
+  .projectList p:hover {
+    color: #5c9ead;
+  }
+
+  /* Project Pane */
+  .projectsContainer {
+    width: 15vw;
+  }
+
+  .task:hover {
+    background-color: #c4c4c43b;
+    border-radius: 5px;
+  }
+  
+
+  /* Task Pane */
+  .taskPaneContainer {
+    width: 65vw;
+  }
+
+  .projectNameContainer {
+    width: 100%;
+    margin: 4em 0 0 0;
+    padding: 1em 2em;
+    border-bottom: 0.5px solid #c4c4c441;
+  }
+
+  .noProjectImgContainer {
+    width: 40vw
+  }
+
+  .taskList {
+    width: 90%;
+    margin: 3em 2em 0 2em;
+  }
+
+  .task {
+    border-top: none;
+    border-bottom: 0.5px solid #c4c4c4;
+  }
+
+  .task:last-of-type {
+    border-bottom: none;
+  }
+
+  /* Add Task Form */
+  .addTaskFormContainer {
+    display: none;
+    z-index: 0;
+    left: 80vw;
+    height: 100vh;
+    width: 20vw;
+    background: none;
+  }
+
+  .addTaskFormContainer form {
+    width: 20vw;
+    height: 100vh;
+    padding: 6em 2em;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  /* Warning Message */
+  .warningPopup {
+    width: 30vw;
+  }
+
+}

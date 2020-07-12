@@ -6,7 +6,6 @@ const ManipulateData = (() =>{
 
     const projectsContainer     = document.querySelector('.projectsContainer');
     const inputCreateProject    = document.querySelector('#inputCreateProject');
-    const editProjectNameIcon   = document.querySelector('#editProjectNameIcon');
     const editProjectNameInput  = document.querySelector('#editProjectNameInput');
       let projectList           = document.querySelector('.projectList');
 
@@ -56,7 +55,6 @@ const ManipulateData = (() =>{
                     data.push(projectMaker(inputCreateProject.value, []));
                     renderProject(data);
                 }
-                inputCreateProject.value = '';
                 ManipulateDOM.hideProjectForm();
                 showAndHideNoProjectImg();
             }
@@ -122,6 +120,7 @@ const ManipulateData = (() =>{
             projectsContainer.classList.toggle('expanded');
             ManipulateDOM.hideNoTaskImage();
             showAndHideNoProjectImg();
+            ManipulateDOM.hideTaskForm();
         })
     }
 
@@ -136,16 +135,18 @@ const ManipulateData = (() =>{
             let putInProject = data.findIndex(name => name.projectName == projectCategory.value);
             
             // Put the data inside that project
-            data[putInProject].tasks.push(taskMaker(
-                taskName.value,
-                dateDue.value,
-                "Incomplete",
-                notes.value
-            ));
+            if (taskName.value !== '') {
+                data[putInProject].tasks.push(taskMaker(
+                    taskName.value,
+                    dateDue.value,
+                    "Incomplete",
+                    notes.value
+                ));
 
-            renderTask(data[openProject].tasks);
-            clearAddTaskForm();
-            ManipulateDOM.hideTaskForm();
+                renderTask(data[openProject].tasks);
+                clearAddTaskForm();
+                ManipulateDOM.hideTaskForm();
+            }
         })
     }
 
@@ -192,11 +193,11 @@ const ManipulateData = (() =>{
 
     const editTask = () => {
         document.addEventListener('click', event => {
-            if(event.target.className == 'task') {
+            if(event.target.className === 'task' || event.target.className === 'taskName') {
                 ManipulateDOM.showTaskForm();
                 let parentNodeId = Number(event.target.parentNode.id);
                 let searchProject = data.findIndex(name => name.projectName == projectName.textContent);
-
+                
                 /* Load the data to the inputs */
                 taskName.value = data[searchProject].tasks[parentNodeId].taskName;
                 dateDue.value = data[searchProject].tasks[parentNodeId].dateDue;
@@ -205,10 +206,12 @@ const ManipulateData = (() =>{
                 data[searchProject].tasks.splice(parentNodeId, 1);
                 saveButton.addEventListener('click', editTaskData(searchProject, parentNodeId));
                 renderTask(data[searchProject].tasks);
+                
             }
         })
 
-        function editTaskData(project, taskIndex) {
+        const editTaskData = (project, taskIndex) => {
+            
             data[project].tasks[taskIndex].taskName = taskName.value;
             data[project].tasks[taskIndex].dateDue = dateDue.value;
             data[project].tasks[taskIndex].notes = notes.value;
@@ -220,9 +223,9 @@ const ManipulateData = (() =>{
             if(event.target.className == 'taskStatus') {
                 let parentNodeId = Number(event.target.parentNode.parentNode.id);
                 let searchProject = data.findIndex(name => name.projectName == projectName.textContent);
-                console.log(parentNodeId);
+               
                 let taskStatusToChange = data[searchProject].tasks[parentNodeId];
-                //console.log(taskStatusToChange);
+               
                 if (event.target.checked) {
                     taskStatusToChange.status = 'Complete';        
                 }
@@ -230,11 +233,12 @@ const ManipulateData = (() =>{
                 else if(!event.currentTarget.checked) {
                     taskStatusToChange.status = 'Incomplete';
                 }
-                console.log(data);
+               
                renderTask(data[searchProject].tasks);
             }
         })
     }
+
 
     return {
         showAndHideNoProjectImg,

@@ -22,4 +22,3 @@ ManipulateData.cancelAddTask();
 ManipulateData.deleteTask();
 ManipulateData.editTask();
 ManipulateData.changeTaskStatus();
-

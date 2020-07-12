@@ -22,7 +22,7 @@ const ManipulateDOM = (() => {
       let taskList              = document.querySelector(".taskList");
     
     /* For warning message */
-    const warningPopupContainer                 = document.querySelector(".warningPopupContainer");
+    const warningPopupContainer = document.querySelector(".warningPopupContainer");
     const noButton              = document.querySelector(".noButton");
 
     /* ==========================================================
@@ -49,6 +49,7 @@ const ManipulateDOM = (() => {
     const hideProjectForm = () => {
         createProjectButton.style.display = 'block';
         inputCreateProject.style.display = 'none';
+        inputCreateProject.value = '';
     }
 
     const createProject = (array) => {
