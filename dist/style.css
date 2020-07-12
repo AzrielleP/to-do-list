@@ -78,6 +78,8 @@ Project Pane
   padding: 0.3em 2em;
   font-weight: bolder;
   color: #000000;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 /* Make the list of projects scrollable when there are too many projects */
@@ -152,6 +154,8 @@ Tasks Pane
   font-weight: bolder;
   color: #326273;
   text-transform: uppercase;
+  text-overflow: ellipsis;
+  overflow: hidden
 }
 
 #editProjectNameInput {
@@ -170,6 +174,21 @@ Tasks Pane
   width: 100%;
   margin-top: 3em;
   font-size: 0.75em;
+}
+
+.noTaskImgContainer {
+  display: none;
+  background: url('images/NoTasks.png') no-repeat center center/cover;
+  height: 50vh;
+  width: 100%;
+}
+
+.noProjectImgContainer {
+  display: none;
+  margin-top: 5em;
+  background: url('images/NoProjects.png') no-repeat center center/cover;
+  height: 50vh;
+  width: 100%;
 }
 
 .task {
@@ -220,6 +239,7 @@ Tasks Pane
   padding: 2em 7.5vw;
   border: none;
   outline: none;
+  margin: auto;
   font-size: 0.8em;
   font-weight: bolder;
   text-transform: uppercase;

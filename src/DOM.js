@@ -11,6 +11,8 @@ const ManipulateDOM = (() => {
       let projectList           = document.querySelector('.projectList');
 
     /*For task pane and add task form */
+    const noTaskImgContainer    = document.querySelector('.noTaskImgContainer');
+    const noProjectImgContainer = document.querySelector('.noProjectImgContainer');
     const editProjectNameIcon   = document.querySelector('#editProjectNameIcon');
     const editProjectNameInput  = document.querySelector('#editProjectNameInput');
     const addTaskButton         = document.querySelector('.addTaskButton');
@@ -194,6 +196,27 @@ const ManipulateDOM = (() => {
 
     }
 
+    /* ==========================================================
+        DISPLAY IMAGES
+       ==========================================================
+    */
+
+    const displayNoTaskImage = () => {
+        noTaskImgContainer.style.display = 'block';
+    }
+
+    const hideNoTaskImage = () => {
+        noTaskImgContainer.style.display = 'none';
+    }
+
+    const displayNoProjectImage = () => {
+        noProjectImgContainer.style.display = 'block';
+    }
+
+    const hideNoProjectImage = () => {
+        noProjectImgContainer.style.display = 'none';
+    }
+
     return {
         burgerToggle, 
         showProjectForm, 
@@ -216,7 +239,11 @@ const ManipulateDOM = (() => {
         hideWarningMessage,
         cancelDeleteProject,
 
-        autofocusInput
+        autofocusInput,
+        displayNoTaskImage,
+        hideNoTaskImage,
+        displayNoProjectImage,
+        hideNoProjectImage
     };
   
   })();

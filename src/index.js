@@ -11,6 +11,7 @@ ManipulateDOM.showWarningMessage();
 
 ManipulateDOM.autofocusInput();
 
+ManipulateData.showAndHideNoProjectImg();
 ManipulateData.addProject();
 ManipulateData.viewProjectTasks();
 ManipulateData.deleteProject();
@@ -21,3 +22,4 @@ ManipulateData.cancelAddTask();
 ManipulateData.deleteTask();
 ManipulateData.editTask();
 ManipulateData.changeTaskStatus();
+

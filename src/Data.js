@@ -38,6 +38,15 @@ const ManipulateData = (() =>{
        ==========================================================
     */
 
+    const showAndHideNoProjectImg = () => {
+        if (data.length === 0) {
+            ManipulateDOM.displayNoProjectImage();
+        }
+        else {
+            ManipulateDOM.hideNoProjectImage();
+        }
+    }
+
     // Add Project on Project Pane
     const addProject = () => {
         inputCreateProject.addEventListener('keydown', event=> {
@@ -49,6 +58,7 @@ const ManipulateData = (() =>{
                 }
                 inputCreateProject.value = '';
                 ManipulateDOM.hideProjectForm();
+                showAndHideNoProjectImg();
             }
             event.stopPropagation();
         })
@@ -110,6 +120,8 @@ const ManipulateData = (() =>{
             ManipulateDOM.deleteTaskList();
             renderProject(data);
             projectsContainer.classList.toggle('expanded');
+            ManipulateDOM.hideNoTaskImage();
+            showAndHideNoProjectImg();
         })
     }
 
@@ -146,8 +158,14 @@ const ManipulateData = (() =>{
 
     const renderTask = (array) => {
         taskList.innerHTML = "";
-        for(let i = 0; i < array.length; i++) {
-            ManipulateDOM.createTaskElement(array[i], i);
+        if (array.length === 0) {
+            ManipulateDOM.displayNoTaskImage();
+        }
+        else if (array.length !== 0) {
+            ManipulateDOM.hideNoTaskImage();
+            for(let i = 0; i < array.length; i++) {
+                ManipulateDOM.createTaskElement(array[i], i);
+            }
         }
     }
 
@@ -217,6 +235,7 @@ const ManipulateData = (() =>{
     }
 
     return {
+        showAndHideNoProjectImg,
         addProject,
         viewProjectTasks, 
         editProjectName,
