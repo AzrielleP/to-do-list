@@ -1,5 +1,6 @@
-import ManipulateDOM from './DOM.js';
-import ManipulateData from './Data.js';
+/* eslint-disable linebreak-style */
+import ManipulateDOM from './DOM';
+import ManipulateData from './Data';
 
 ManipulateDOM.burgerToggle();
 ManipulateDOM.showProjectForm();
