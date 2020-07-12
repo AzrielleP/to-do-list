@@ -141,6 +141,8 @@ const ManipulateDOM = (() => {
         
         if(object.status == 'Complete'){
             statusCheckbox.checked = true;
+            taskName.style.color = '#c4c4c4';
+            dateDue.style.color = '#c4c4c4';
         }
         
         taskDetails.append(taskName, dateDue);

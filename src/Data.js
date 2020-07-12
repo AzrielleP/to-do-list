@@ -218,10 +218,11 @@ const ManipulateData = (() =>{
     const changeTaskStatus = () => {
         document.addEventListener('click', event => {
             if(event.target.className == 'taskStatus') {
-                let parentNodeId = Number(event.target.parentNode.id);
+                let parentNodeId = Number(event.target.parentNode.parentNode.id);
                 let searchProject = data.findIndex(name => name.projectName == projectName.textContent);
-
+                console.log(parentNodeId);
                 let taskStatusToChange = data[searchProject].tasks[parentNodeId];
+                //console.log(taskStatusToChange);
                 if (event.target.checked) {
                     taskStatusToChange.status = 'Complete';        
                 }
@@ -229,6 +230,7 @@ const ManipulateData = (() =>{
                 else if(!event.currentTarget.checked) {
                     taskStatusToChange.status = 'Incomplete';
                 }
+                console.log(data);
                renderTask(data[searchProject].tasks);
             }
         })
