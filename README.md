@@ -1,6 +1,6 @@
 # To-Do List Application
 
-This project is part of the **JavaScript** course of **The Odin Project**. Currently a work in progress.
+This project is part of the **JavaScript** course of **The Odin Project**. See the live version [here](https://azriellep.github.io/to-do-list/).
 
 ## Tools / Technologies Used:
 - HTML5
@@ -10,9 +10,3 @@ This project is part of the **JavaScript** course of **The Odin Project**. Curre
 - Figma
 - VS Code
 - Git Bash
-
-## Working on the following improvements:
-- Desktop design support
-- Modifications on overall design
-- Edit project name feature
-- Local storage / Firebase
