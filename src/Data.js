@@ -91,7 +91,7 @@ const ManipulateData = (() => {
     }
   };
 
-  const clearAddTaskForm = () => {
+  const clearTaskForm = () => {
     taskName.value = '';
     dateDue.value = '';
     notes.value = '';
@@ -138,6 +138,7 @@ const ManipulateData = (() => {
         (name) => name.projectName === projectName.textContent
       );
       data.splice(searchProject, 1);
+      
       ManipulateDOM.hideWarningMessage();
       ManipulateDOM.deleteProjectName();
       ManipulateDOM.deleteTaskList();
@@ -152,7 +153,6 @@ const ManipulateData = (() => {
   /* ADDING A TASK */
 
   const addTask = () => {
-    console.log(data);
     addButton.addEventListener('click', () => {
       // openProject finds the project name of the project that we're currently at
       const openProject = data.findIndex(
@@ -172,16 +172,15 @@ const ManipulateData = (() => {
         );
 
         renderTask(data[openProject].tasks);
-        clearAddTaskForm();
+        clearTaskForm();
         ManipulateDOM.hideTaskForm();
       }
     });
-    console.log(data);
   };
 
   const cancelAddTask = () => {
     cancelButton.addEventListener('click', () => {
-      clearAddTaskForm();
+      clearTaskForm();
       ManipulateDOM.hideTaskForm();
     });
   };
@@ -205,11 +204,6 @@ const ManipulateData = (() => {
 
   const editTask = () => {
     let searchProject, parentNodeId;
-    const editTaskData = (project, taskIndex) => {
-      data[project].tasks[taskIndex].taskName = taskName.value;
-      data[project].tasks[taskIndex].dateDue = dateDue.value;
-      data[project].tasks[taskIndex].notes = notes.value;
-    };
 
     // Display the data of the task to be editted
     taskList.addEventListener('click', (event) => {
@@ -219,7 +213,6 @@ const ManipulateData = (() => {
         searchProject = data.findIndex(
           (name) => name.projectName === projectName.textContent
         );
-        console.log(searchProject);
 
         /* Load the data to the inputs */
         taskName.value = data[searchProject].tasks[parentNodeId].taskName;
@@ -228,13 +221,18 @@ const ManipulateData = (() => {
       }
     });
 
+    const editTaskData = (project, taskIndex) => {
+      data[project].tasks[taskIndex].taskName = taskName.value;
+      data[project].tasks[taskIndex].dateDue = dateDue.value;
+      data[project].tasks[taskIndex].notes = notes.value;
+    };
+
     editButton.addEventListener('click', () => {
       editTaskData(searchProject, parentNodeId);
       renderTask(data[searchProject].tasks);
-      clearAddTaskForm();
+      clearTaskForm();
       ManipulateDOM.hideTaskForm();
     });
-    
   };
 
   const changeTaskStatus = () => {
@@ -252,10 +250,8 @@ const ManipulateData = (() => {
         } else if (!event.currentTarget.checked) {
           taskStatusToChange.status = 'Incomplete';
         }
-
         renderTask(data[searchProject].tasks);
       }
-      console.log(data);
     });
   };
 

@@ -103,32 +103,17 @@ const ManipulateDOM = (() => {
        ADD TASK
        ==========================================================
     */
-   const showEditButton = () => {
-    editButton.style.display = 'inline-block';
-  }
-
-  const hideEditButton = () => {
-    editButton.style.display = 'none';
-  }
-
-  const showAddButton = () => {
-    addButton.style.display = 'inline-block';
-  }
-
-  const hideAddButton = () => {
-    addButton.style.display = 'none';
-  }
 
   const showEditTaskForm = () => {
     addTaskFormContainer.style.display = 'flex';
-    showEditButton();
-    hideAddButton();
+    editButton.style.display = 'inline-block';
+    addButton.style.display = 'none';
   };
 
   const showAddTaskForm = () => {
     addTaskFormContainer.style.display = 'flex';
-    hideEditButton();
-    showAddButton();
+    editButton.style.display = 'none';
+    addButton.style.display = 'inline-block';
   }
 
   const hideTaskForm = () => {
@@ -261,7 +246,6 @@ const ManipulateDOM = (() => {
     deleteProjectName,
 
     clickAddToShowForm,
-    showAddTaskForm,
     showEditTaskForm,
     hideTaskForm,
     createTaskElement,
