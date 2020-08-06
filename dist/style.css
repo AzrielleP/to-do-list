@@ -340,7 +340,9 @@ textarea {
   background: none;
 }
 
-.saveButton {
+.addButton,
+.editButton {
+  display: none;
   width: 6em;
   padding: 1em;
   border: none;
@@ -479,11 +481,11 @@ Warning Message
   .createProjectButton,
   .addTaskButton,
   .cancelButton,
-  .saveButton,
+  .editButton,
+  .addButton,
   i,
   .projectList p,
   .taskStatus,
-  .task,
   .taskName {
     cursor: pointer;
   }
@@ -493,7 +495,8 @@ Warning Message
     color: #5c9ead;
   }
 
-  .saveButton:hover {
+  .editButton:hover,
+  .addButton:hover {
     background: #5c9ead;
   }
 
@@ -519,14 +522,20 @@ Warning Message
     width: 15vw;
   }
 
+  /* Task Pane */
+  .taskPaneContainer {
+    width: 60vw;
+  }
+
   .task:hover {
     background-color: #c4c4c43b;
     border-radius: 5px;
   }
 
-  /* Task Pane */
-  .taskPaneContainer {
-    width: 65vw;
+  .taskName:hover,
+  .taskName:focus,
+  .taskName:active {
+    text-decoration: underline;
   }
 
   .projectNameContainer {
@@ -558,16 +567,16 @@ Warning Message
   .addTaskFormContainer {
     display: none;
     z-index: 0;
-    left: 80vw;
+    left: 75vw;
     height: 100vh;
-    width: 20vw;
+    width: 25vw;
     background: none;
   }
 
   .addTaskFormContainer form {
-    width: 20vw;
+    width: 25vw;
     height: 100vh;
-    padding: 6em 2em;
+    padding: 6em 1.5em;
     box-shadow: none;
     border-radius: 0;
   }

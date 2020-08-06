@@ -23,6 +23,8 @@ const ManipulateDOM = (() => {
   const projectCategory = document.querySelector('.projectCategory');
   const deleteProjectIcon = document.querySelector('#deleteProjectIcon');
   const taskList = document.querySelector('.taskList');
+  const editButton = document.querySelector('.editButton');
+  const addButton = document.querySelector('.addButton');
 
   /* For warning message */
   const warningPopupContainer = document.querySelector('.warningPopupContainer');
@@ -101,10 +103,33 @@ const ManipulateDOM = (() => {
        ADD TASK
        ==========================================================
     */
+   const showEditButton = () => {
+    editButton.style.display = 'inline-block';
+  }
 
-  const showTaskForm = () => {
+  const hideEditButton = () => {
+    editButton.style.display = 'none';
+  }
+
+  const showAddButton = () => {
+    addButton.style.display = 'inline-block';
+  }
+
+  const hideAddButton = () => {
+    addButton.style.display = 'none';
+  }
+
+  const showEditTaskForm = () => {
     addTaskFormContainer.style.display = 'flex';
+    showEditButton();
+    hideAddButton();
   };
+
+  const showAddTaskForm = () => {
+    addTaskFormContainer.style.display = 'flex';
+    hideEditButton();
+    showAddButton();
+  }
 
   const hideTaskForm = () => {
     addTaskFormContainer.style.display = 'none';
@@ -112,9 +137,11 @@ const ManipulateDOM = (() => {
 
   const clickAddToShowForm = () => {
     addTaskButton.addEventListener('click', () => {
-      showTaskForm();
+      showAddTaskForm();
     });
   };
+
+
 
   const createTaskElement = (object, position) => {
     const task = document.createElement('div');
@@ -234,7 +261,8 @@ const ManipulateDOM = (() => {
     deleteProjectName,
 
     clickAddToShowForm,
-    showTaskForm,
+    showAddTaskForm,
+    showEditTaskForm,
     hideTaskForm,
     createTaskElement,
     deleteTaskList,

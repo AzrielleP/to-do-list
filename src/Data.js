@@ -19,7 +19,8 @@ const ManipulateData = (() => {
   const notes = document.querySelector('#notes');
   const projectCategory = document.querySelector('.projectCategory');
   const cancelButton = document.querySelector('.cancelButton');
-  const saveButton = document.querySelector('.saveButton');
+  const addButton = document.querySelector('.addButton');
+  const editButton = document.querySelector('.editButton');
 
   const projectName = document.querySelector('.projectName');
   const yesButton = document.querySelector('.yesButton');
@@ -151,7 +152,8 @@ const ManipulateData = (() => {
   /* ADDING A TASK */
 
   const addTask = () => {
-    saveButton.addEventListener('click', () => {
+    console.log(data);
+    addButton.addEventListener('click', () => {
       // openProject finds the project name of the project that we're currently at
       const openProject = data.findIndex(
         (name) => name.projectName === projectName.textContent
@@ -174,6 +176,7 @@ const ManipulateData = (() => {
         ManipulateDOM.hideTaskForm();
       }
     });
+    console.log(data);
   };
 
   const cancelAddTask = () => {
@@ -201,36 +204,37 @@ const ManipulateData = (() => {
   };
 
   const editTask = () => {
+    let searchProject, parentNodeId;
     const editTaskData = (project, taskIndex) => {
       data[project].tasks[taskIndex].taskName = taskName.value;
       data[project].tasks[taskIndex].dateDue = dateDue.value;
       data[project].tasks[taskIndex].notes = notes.value;
     };
 
-    document.addEventListener('click', (event) => {
-      if (
-        event.target.className === 'task'
-        || event.target.className === 'taskName'
-      ) {
-        ManipulateDOM.showTaskForm();
-        const parentNodeId = Number(event.target.parentNode.id);
-        const searchProject = data.findIndex(
+    // Display the data of the task to be editted
+    taskList.addEventListener('click', (event) => {
+      if (event.target.className === 'taskName') {
+        ManipulateDOM.showEditTaskForm();
+        parentNodeId = event.target.parentNode.parentNode.parentNode.id;
+        searchProject = data.findIndex(
           (name) => name.projectName === projectName.textContent
         );
+        console.log(searchProject);
 
         /* Load the data to the inputs */
         taskName.value = data[searchProject].tasks[parentNodeId].taskName;
         dateDue.value = data[searchProject].tasks[parentNodeId].dateDue;
         notes.value = data[searchProject].tasks[parentNodeId].notes;
-
-        data[searchProject].tasks.splice(parentNodeId, 1);
-        saveButton.addEventListener(
-          'click',
-          editTaskData(searchProject, parentNodeId)
-        );
-        renderTask(data[searchProject].tasks);
       }
     });
+
+    editButton.addEventListener('click', () => {
+      editTaskData(searchProject, parentNodeId);
+      renderTask(data[searchProject].tasks);
+      clearAddTaskForm();
+      ManipulateDOM.hideTaskForm();
+    });
+    
   };
 
   const changeTaskStatus = () => {
@@ -251,6 +255,7 @@ const ManipulateData = (() => {
 
         renderTask(data[searchProject].tasks);
       }
+      console.log(data);
     });
   };
 
