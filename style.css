@@ -408,6 +408,53 @@ Warning Message
   font-weight: bold;
 }
 
+/* HOVER */
+.projectList p,
+.createProjectButton,
+.addTaskButton,
+.cancelButton,
+.editButton,
+.addButton,
+i,
+.projectList p,
+.taskStatus,
+.taskName {
+  cursor: pointer;
+}
+
+.createProjectButton:hover,
+.addTaskButton:hover {
+  color: #5c9ead;
+}
+
+.editButton:hover,
+.addButton:hover {
+  background: #5c9ead;
+}
+
+.cancelButton:hover {
+  color: #c4c4c4;
+}
+
+#editProjectNameIcon:hover {
+  color: #5c9ead;
+}
+
+#deleteProjectIcon:hover,
+#deleteTaskIcon:hover {
+  color: #dd4641;
+}
+
+.projectList p:hover {
+  color: #5c9ead;
+}
+
+.taskName:hover,
+.taskName:focus,
+.taskName:active {
+  text-decoration: underline;
+}
+
 @media screen and (max-width: 321px) {
   .projectsContainer {
     left: -60vw;
@@ -476,46 +523,7 @@ Warning Message
 }
 
 @media screen and (min-width: 1024px) {
-  /* HOVER */
-  .projectList p,
-  .createProjectButton,
-  .addTaskButton,
-  .cancelButton,
-  .editButton,
-  .addButton,
-  i,
-  .projectList p,
-  .taskStatus,
-  .taskName {
-    cursor: pointer;
-  }
-
-  .createProjectButton:hover,
-  .addTaskButton:hover {
-    color: #5c9ead;
-  }
-
-  .editButton:hover,
-  .addButton:hover {
-    background: #5c9ead;
-  }
-
-  .cancelButton:hover {
-    color: #c4c4c4;
-  }
-
-  #editProjectNameIcon:hover {
-    color: #5c9ead;
-  }
-
-  #deleteProjectIcon:hover,
-  #deleteTaskIcon:hover {
-    color: #dd4641;
-  }
-
-  .projectList p:hover {
-    color: #5c9ead;
-  }
+  
 
   /* Project Pane */
   .projectsContainer {
@@ -530,12 +538,6 @@ Warning Message
   .task:hover {
     background-color: #c4c4c43b;
     border-radius: 5px;
-  }
-
-  .taskName:hover,
-  .taskName:focus,
-  .taskName:active {
-    text-decoration: underline;
   }
 
   .projectNameContainer {
